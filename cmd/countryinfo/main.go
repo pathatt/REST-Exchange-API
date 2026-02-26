@@ -3,6 +3,7 @@ package main
 import (
 	"log"
 	"net/http"
+	"os"
 	"time"
 
 	"assignment-1/internal/api"
@@ -30,6 +31,11 @@ func main() {
 	mux := http.NewServeMux()
 	env.Register(mux)
 
-	log.Println("listening on :8080")
-	log.Fatal(http.ListenAndServe(":8080", mux))
+	port := "8080"
+	if p := os.Getenv("PORT"); p != "" {
+		port = p
+	}
+	log.Println("listening on :" + port)
+	log.Fatal(http.ListenAndServe(":"+port, mux))
+
 }
