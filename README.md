@@ -175,7 +175,12 @@ Start command:
 ```
 
 ---
+
+## Use of AI
+
 This README was written in cooperation with AI for structure and clarity purposes.
+The project is written with support from AI in troubleshooting and solutions to problems, but generally written by me.
+
 ---
 
 Individual assignment in **PROG2005** at **NTNU**
