@@ -54,7 +54,11 @@ func (e *HandlerEnv) Info(w http.ResponseWriter, r *http.Request) {
 
 	info, st, err := e.Countries.GetCountryInfo(r, code)
 	if err != nil {
-		http.Error(w, err.Error(), st)
+		if st == http.StatusNotFound {
+			http.Error(w, "country not found", http.StatusNotFound)
+			return
+		}
+		http.Error(w, "failed to fetch country info", st)
 		return
 	}
 
@@ -86,7 +90,11 @@ func (e *HandlerEnv) Exchange(w http.ResponseWriter, r *http.Request) {
 
 	core, st, err := e.Countries.GetCountryCore(r, code)
 	if err != nil {
-		http.Error(w, err.Error(), st)
+		if st == http.StatusNotFound {
+			http.Error(w, "country not found", http.StatusNotFound)
+			return
+		}
+		http.Error(w, "failed to fetch country data", st)
 		return
 	}
 
