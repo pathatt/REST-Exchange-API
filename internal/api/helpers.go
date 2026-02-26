@@ -26,3 +26,9 @@ func Probe(client *http.Client, url string) int {
 	defer resp.Body.Close()
 	return resp.StatusCode
 }
+
+func WriteError(w http.ResponseWriter, status int, msg string) {
+	WriteJSON(w, status, map[string]string{
+		"error": msg,
+	})
+}
